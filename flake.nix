@@ -25,16 +25,16 @@
               }.${stdenv.hostPlatform.system} or (throw "unsupported system ${stdenv.hostPlatform.system}");
 
               sha256 = {
-                x86_64-linux = "1l6di9i1j99lvib7ch2l984pmazjrwb1bvaxz90rxcn9f9gwr5bw";
+                x86_64-linux = "0fisq7dxfvrhzhb46vx346fl5xvb1ds2xlk9kpgzmn2naj653vm8";
               }.${stdenv.hostPlatform.system} or (throw "unsupported system ${stdenv.hostPlatform.system}");
             in stdenv.mkDerivation rec {
               pname = "jlink";
-              version = "V698d";
+              version = "V698e";
 
               src = requireFile {
                 name = "JLink_Linux_${version}_${architecture}.tgz";
                 url = "https://www.segger.com/downloads/jlink#J-LinkSoftwareAndDocumentationPack";
-                sha256 = sha256;
+                inherit sha256;
               };
 
               dontConfigure = true;
