@@ -25,11 +25,11 @@
               }.${stdenv.hostPlatform.system} or (throw "unsupported system ${stdenv.hostPlatform.system}");
 
               sha256 = {
-                x86_64-linux = "0fisq7dxfvrhzhb46vx346fl5xvb1ds2xlk9kpgzmn2naj653vm8";
+                x86_64-linux = "0b9jyhd0lkd0icabpfgdcbmzdz4arw1wvjkzchbm4gpd4lvw5q0g";
               }.${stdenv.hostPlatform.system} or (throw "unsupported system ${stdenv.hostPlatform.system}");
             in stdenv.mkDerivation rec {
               pname = "jlink";
-              version = "V698e";
+              version = "V700a";
 
               src = requireFile {
                 name = "JLink_Linux_${version}_${architecture}.tgz";
