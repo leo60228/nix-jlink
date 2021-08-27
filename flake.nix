@@ -1,7 +1,7 @@
 # adapted from https://github.com/pjones/nixpkgs-jlink/blob/master/jlink.nix
 
 {
-  inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixos-20.09";
+  inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixos-21.05";
   inputs.flake-utils.url = "github:numtide/flake-utils";
 
   outputs = { nixpkgs, flake-utils, ... }:
@@ -15,7 +15,7 @@
         packages = {
           jlink =
             let
-              inherit (pkgs) stdenv requireFile autoPatchelfHook substituteAll qt4 fontconfig freetype libusb ncurses5 udev;
+              inherit (pkgs) stdenv lib requireFile autoPatchelfHook substituteAll qt4 fontconfig freetype libusb ncurses5 udev;
               inherit (pkgs.xorg) libICE libSM libX11 libXext libXcursor libXfixes libXrender libXrandr;
 
               architecture = {
@@ -25,11 +25,11 @@
               }.${stdenv.hostPlatform.system} or (throw "unsupported system ${stdenv.hostPlatform.system}");
 
               sha256 = {
-                x86_64-linux = "0b9jyhd0lkd0icabpfgdcbmzdz4arw1wvjkzchbm4gpd4lvw5q0g";
+                x86_64-linux = "1q0baln1f7241jywzr2pv05bdpp8nxk6bh74xigg2ln5lrvfzzdn";
               }.${stdenv.hostPlatform.system} or (throw "unsupported system ${stdenv.hostPlatform.system}");
             in stdenv.mkDerivation rec {
               pname = "jlink";
-              version = "V700a";
+              version = "V752d";
 
               src = requireFile {
                 name = "JLink_Linux_${version}_${architecture}.tgz";
@@ -61,7 +61,7 @@
                 patchelf --add-needed libudev.so.1 $out/JLink/libjlinkarm.so
               '';
 
-              meta = with stdenv.lib; {
+              meta = with lib; {
                 homepage = "https://www.segger.com/downloads/jlink";
                 description = "SEGGER J-Link";
                 license = licenses.unfree;
